@@ -1804,20 +1804,13 @@ I don't use auto-complete at all, so I have set up a hook to automatically disab
                    (format "--gpg-sign=%s" imalison:gpg-key)))
 
     (add-to-list 'org-show-context-detail '(magit-goto . lineage))
-    (advice-add 'magit-diff-visit-file :after 'imalison:after-magit-visit-file)
-    (use-package magit-filenotify
-      ;; Seems like OSX does not support filenotify.
-      :disabled t
-      :if (funcall (emacs-version-predicate 24 4))
-      :config
-      :init (add-hook 'magit-status-mode-hook 'magit-filenotify-mode))))
+    (advice-add 'magit-diff-visit-file :after 'imalison:after-magit-visit-file)))
 #+END_SRC
 *** magithub
 #+BEGIN_SRC emacs-lisp
 (use-package magithub
   :if (executable-find "hub")
-  :after magit
-  :disabled t)
+  :after magit)
 #+END_SRC
 ** git-link
 #+BEGIN_SRC emacs-lisp
